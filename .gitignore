@@ -1,0 +1,15 @@
+# Build files
+build/
+
+# Compiled files
+*.o
+*.out
+*.exe
+
+# API keys and local configuration
+.env
+*.env
+
+# Editor files
+.vscode/
+.idea/
