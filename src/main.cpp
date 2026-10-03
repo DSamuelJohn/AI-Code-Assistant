@@ -1,6 +1,8 @@
-#include<iostream>
+#include "CLIController.hpp"
 
-int main(){
-    std::cout << "AI Code Assistant starting..." << std::endl;
+int main() {
+    CLIController cli;
+    cli.start();
+
     return 0;
 }
