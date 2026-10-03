@@ -10,7 +10,9 @@ public:
 private:
     void processCommand(const std::string& input);
     void showHelp();
-    void handleReadCommand(const std::string& filepath);
+    void handleReadCommand(const std::string& filePath);
+    void handleGenerateCommand(const std::string& instruction);
+    void handleRefactorCommand(const std::string& filePath);
 };
 
 #endif

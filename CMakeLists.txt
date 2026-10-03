@@ -9,6 +9,7 @@ add_executable(ai-assistant
     src/main.cpp
     src/CLIController.cpp
     src/FileManager.cpp
+    src/PromptBuilder.cpp
 )
 
 target_include_directories(ai-assistant
