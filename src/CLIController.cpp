@@ -2,6 +2,7 @@
 #include <string>
 
 #include "CLIController.hpp"
+#include "FileManager.hpp"
 
 void CLIController::start() {
     std::cout << "AI Code Assistant" << std::endl;
@@ -33,8 +34,11 @@ void CLIController::processCommand(const std::string& input) {
     else if (input == "refactor") {
         std::cout << "Refactor command selected." << std::endl;
     }
+    else if (input.rfind("read ", 0) == 0) {
+        std::string filePath = input.substr(5);
+        handleReadCommand(filePath);
+    }
     else if (input.empty()) {
-        // Do nothing for an empty command.
     }
     else {
         std::cout << "Unknown command: " << input << std::endl;
@@ -44,8 +48,29 @@ void CLIController::processCommand(const std::string& input) {
 
 void CLIController::showHelp() {
     std::cout << "\nAvailable commands:" << std::endl;
-    std::cout << "  generate  Generate code using natural-language instructions" << std::endl;
-    std::cout << "  refactor  Analyze and refactor a source file" << std::endl;
-    std::cout << "  help      Show available commands" << std::endl;
-    std::cout << "  exit      Exit the application" << std::endl;
+    std::cout << "  generate              Generate code" << std::endl;
+    std::cout << "  refactor              Refactor a source file" << std::endl;
+    std::cout << "  read <file>           Read a source file" << std::endl;
+    std::cout << "  help                  Show available commands" << std::endl;
+    std::cout << "  exit                  Exit the application" << std::endl;
+}
+
+void CLIController::handleReadCommand(const std::string& filePath) {
+    FileManager fileManager;
+
+    if (!fileManager.fileExists(filePath)) {
+        std::cout << "Error: File does not exist." << std::endl;
+        return;
+    }
+
+    std::string content = fileManager.readFile(filePath);
+
+    if (content.empty()) {
+        std::cout << "File is empty or could not be read." << std::endl;
+        return;
+    }
+
+    std::cout << "\n--- File Content ---" << std::endl;
+    std::cout << content;
+    std::cout << "\n--- End of File ---" << std::endl;
 }

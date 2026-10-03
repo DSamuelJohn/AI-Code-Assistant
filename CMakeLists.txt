@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(ai-assistant
     src/main.cpp
     src/CLIController.cpp
+    src/FileManager.cpp
 )
 
 target_include_directories(ai-assistant
